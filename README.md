@@ -5,7 +5,8 @@
 We run all benchmarks in Docker containers to take advantage of isolated run environment, which provides us with consistent results.
 For each suite run we boot new fresh container and remove it after the run has finished, and so on.
 
-Supported suites:
+## Maintained suites
+
 - Ruby
 - Rails
 - Active Record
@@ -14,12 +15,11 @@ Supported suites:
 
 You will find for each suite two Docker images. One is intended to run on a per-release basis, and another one on a per-commit basis.
 
-## Ruby trunk
+## Run suite in Docker container
 
-#### Build base image for Ruby benchmarks
-```
-sudo docker build --no-cache -t rubybench/ruby_trunk .
-```
+Scripts for running are placed in **/scripts** directory. Script will run suite by passing needed environment variables to new container.
+
+### Ruby
 
 #### Run Ruby benchmarks
 ```
