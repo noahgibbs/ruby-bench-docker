@@ -5,6 +5,8 @@
 We run all benchmarks in Docker containers to take advantage of isolated run environment, which provides us with consistent results.
 For each suite run we boot new fresh container and remove it after the run has finished, and so on.
 
+You can pull these images from [Dockerhub](https://hub.docker.com/u/rubybench/).
+
 ## Maintained suites
 
 - Ruby
@@ -21,7 +23,22 @@ Scripts for running are placed in **/scripts** directory. Script will run suite 
 
 ### Ruby
 
-#### Run Ruby benchmarks
+#### Commit run
+
+Pull **rubybench/ruby_trunk** image from Dockerhub:
+
+```
+sudo docker pull rubybench/ruby_trunk
+```
+
+Or build it on your own:
+
+```
+cd ruby/ruby_trunk/ruby_benchmarks
+sudo docker build -t rubybench/ruby_trunk .
+```
+Run suite:
+
 ```
 sudo docker run --rm \
 -e "RUBY_BENCHMARKS=true" \
@@ -32,17 +49,23 @@ sudo docker run --rm \
 -e "INCLUDE_PATTERNS=<pattern1,pattern2,pattern3>"
 rubybench/ruby_trunk
 ```
-## Ruby Releases
 
-### Ruby Benchmarks
+#### Release run
 
-#### Build base image for Ruby benchmarks
+Pull **rubybench/ruby_releases** image from Dockerhub:
+
 ```
-sudo docker build --no-cache -t rubybench/ruby_releases_base .
-sudo docker build --no-cache -t rubybench/ruby_releases .
+sudo docker pull rubybench/ruby_releases
 ```
 
-#### Run Ruby benchmarks
+Or build it on your own:
+
+```
+cd ruby/ruby_releases/ruby_benchmarks
+sudo docker build -t rubybench/ruby_releases .
+```
+Run suite:
+
 ```
 sudo docker run --rm \
 -e "RUBY_BENCHMARKS=true" \
